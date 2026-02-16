@@ -1,11 +1,11 @@
 import type { Todo } from "shared/types"
 
-import { ITodo } from "api/models/Todo"
 import { ObjectId } from "mongodb"
 import request from "supertest"
 import { afterEach, describe, expect, it, vi } from "vitest"
 
 import app from "~/app"
+import { ITodo } from "~/models/Todo"
 import * as todoService from "~/services/todoService"
 
 const mockTodo = (overrides: Partial<Todo> = {}): Todo => ({

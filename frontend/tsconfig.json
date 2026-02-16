@@ -1,12 +1,10 @@
 {
-  "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "jsx": "react-jsx",
-    "types": ["vitest/globals", "node"],
-    "noEmit": true,
     "allowImportingTsExtensions": true,
     "baseUrl": "./src",
+    "jsx": "react-jsx",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "noEmit": true,
     "paths": {
       "~/components/*": ["./components/*"],
       "~/constants/*": ["./constants/*"],
@@ -15,8 +13,14 @@
       "~/stores/*": ["./stores/*"],
       "~/types/*": ["./types/*"],
       "~/utils/*": ["./utils/*"]
-    }
+    },
+    "types": ["vitest/globals", "node"]
   },
-  "references": [{ "path": "./tsconfig.node.json" }],
-  "include": ["src", "setup-vitest.ts", "__tests__", "__mocks__"]
+  "extends": ["../tsconfig.base.json"],
+  "include": ["src", "setup-vitest.ts", "__tests__", "__mocks__"],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }

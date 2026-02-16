@@ -1,14 +1,14 @@
 {
-  "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "build",
-    "rootDir": "src",
     "declaration": true,
     "declarationMap": true,
-    "sourceMap": true,
     "module": "nodenext",
-    "moduleResolution": "nodenext"
+    "moduleResolution": "nodenext",
+    "outDir": "build",
+    "rootDir": "src",
+    "sourceMap": true
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "build"]
+  "exclude": ["node_modules", "build"],
+  "extends": ["../tsconfig.base.json"],
+  "include": ["src"]
 }

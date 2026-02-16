@@ -35,7 +35,7 @@
   "name": "fullstack-app-template",
   "scripts": {
     "build": "pnpm --stream -r run build",
-    "clean": "rimraf build dist node_modules && pnpm -r run clean",
+    "clean": "rimraf \"**/{node_modules,dist,build}\" && pnpm -r run clean",
     "dev": "pnpm --parallel --stream -r run dev",
     "lint": "pnpm --parallel --stream -r run lint",
     "lint:autofix": "pnpm --parallel --stream -r run lint:autofix",

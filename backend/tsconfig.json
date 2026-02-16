@@ -1,19 +1,18 @@
 {
-  "extends": "../tsconfig.base.json",
   "compilerOptions": {
+    "baseUrl": "src",
     "lib": ["ES2020"],
-    "types": ["vitest/globals", "node"],
-    "noEmit": true,
-    "allowImportingTsExtensions": true,
-    "baseUrl": "./src",
+    "outDir": "dist",
     "paths": {
+      "@logger": ["./app.logger.ts"],
       "~/*": ["./*"],
       "~/controllers/*": ["./api/controllers/*"],
       "~/models/*": ["./api/models/*"],
       "~/routes/*": ["./api/routes/*"],
-      "~/services/*": ["./api/services/*"],
-      "@logger": ["./app.logger.ts"]
-    }
+      "~/services/*": ["./api/services/*"]
+    },
+    "types": ["vitest/globals", "node"]
   },
+  "extends": ["../tsconfig.base.json"],
   "include": ["src", "setup-vitest.ts", "__tests__", "__mocks__"]
 }

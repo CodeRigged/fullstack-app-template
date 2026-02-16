@@ -1,7 +1,7 @@
-import eslint from "@eslint/js";
-import eslintConfigPrettier from "eslint-config-prettier/flat";
-import perfectionist from "eslint-plugin-perfectionist";
-import tseslint from "typescript-eslint";
+import eslint from "@eslint/js"
+import eslintConfigPrettier from "eslint-config-prettier/flat"
+import perfectionist from "eslint-plugin-perfectionist"
+import tseslint from "typescript-eslint"
 
 export default [
   eslint.configs.recommended,
@@ -11,7 +11,6 @@ export default [
     plugins: {
       perfectionist,
     },
-    ignores: ["node_modules", "dist", "build"],
     rules: {
       "perfectionist/sort-imports": [
         "error",
@@ -42,4 +41,4 @@ export default [
       "no-debugger": "error",
     },
   },
-];
+]
