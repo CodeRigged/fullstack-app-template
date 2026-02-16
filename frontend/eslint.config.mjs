@@ -5,5 +5,6 @@ import { defineConfig } from "eslint/config"
 import baseConfig from "../eslint.config.mjs"
 
 export default defineConfig(...baseConfig, reactRefresh.configs.recommended(), reactHooks.configs.flat.recommended, {
+  ignores: ["node_modules", "dist"],
   // Add frontend-specific rules or overrides here if needed
 })
