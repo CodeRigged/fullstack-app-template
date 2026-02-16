@@ -7,7 +7,7 @@ import { ITodo, Todo } from "~/models/Todo"
  * @returns {Promise<ITodo[]>} Array of todo documents
  */
 export const getAllTodos = async (): Promise<ITodo[]> => {
-  return Todo.find()
+  return Todo.find().sort({ createdAt: "desc" })
 }
 
 /**
