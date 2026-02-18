@@ -4,8 +4,10 @@ import cors from "cors"
 import { Express } from "express"
 import pino, { Options } from "pino-http"
 
+import config from "./config"
+
 const pinoOptions: Options =
-  process.env.NODE_ENV === "test"
+  config.nodeEnv === "test"
     ? {
         level: "silent",
       }

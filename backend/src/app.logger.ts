@@ -1,7 +1,9 @@
 import pino from "pino"
 
+import config from "./config"
+
 const logger = pino({
-  level: process.env.LOG_LEVEL || "info",
+  level: config.logLevel,
   transport: {
     options: {
       colorize: true,

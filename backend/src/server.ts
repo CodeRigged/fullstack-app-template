@@ -1,20 +1,15 @@
 import logger from "@logger"
-import dotenv from "dotenv"
 import mongoose from "mongoose"
 
 import app from "./app"
-
-dotenv.config()
-
-const MONGO_URI = `${process.env.MONGO_URI}`
-const PORT = process.env.PORT || 5000
+import config from "./config"
 
 mongoose
-  .connect(MONGO_URI)
+  .connect(config.mongoUri)
   .then(() => {
     logger.info("Connected to MongoDB")
-    app.listen(PORT, () => {
-      logger.info(`Server is running on port ${PORT}`)
+    app.listen(config.port, () => {
+      logger.info(`Server is running on port ${config.port}`)
     })
   })
   .catch(err => {
