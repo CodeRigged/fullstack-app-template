@@ -2,8 +2,8 @@
   "author": "https://github.com/CodeRigged",
   "description": "A code library for validation, reusable in the frontend and backend.",
   "devDependencies": {
-    "mongodb": "^6.21.0",
-    "typescript": "^5.4.2"
+    "mongodb": "6.21.0",
+    "typescript": "5.4.2"
   },
   "exports": {
     ".": "./build/index.js",
