@@ -1,19 +1,27 @@
 import { Box, Button, TextField } from "@mui/material"
-import { useState } from "react"
+import { SubmitEventHandler, useState } from "react"
+import { Todo } from "shared/types"
+import { validateTodo } from "shared/validation"
 
 import { useErrorStore } from "~/stores/state-handlers"
 import { useTodoStore } from "~/stores/todo-store"
 
 const TodoForm = () => {
-  const [newTodo, setNewTodo] = useState("")
+  const [newTodo, setNewTodo] = useState<Todo["text"]>("")
   const { addTodo, isPending } = useTodoStore()
   const { setError } = useErrorStore()
 
-  const handleAdd = async (e: React.FormEvent) => {
+  const handleAdd: SubmitEventHandler<HTMLFormElement> = async e => {
     e.preventDefault()
-    if (!newTodo.trim()) return
-    await addTodo(newTodo).catch(setError)
-    setNewTodo("")
+    // Validate before sending to API
+    const { error, value } = validateTodo({ text: newTodo.trim() })
+    if (error) {
+      setError(error)
+      return
+    } else if (value.text) {
+      await addTodo(value.text).catch(setError)
+      setNewTodo("")
+    }
   }
 
   return (

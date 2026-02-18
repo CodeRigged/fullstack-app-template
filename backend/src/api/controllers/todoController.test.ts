@@ -73,7 +73,7 @@ describe("todoController (via HTTP)", () => {
       const res = await request(app).post("/todos").send({})
 
       expect(res.status).toBe(400)
-      expect(res.body).toEqual({ error: "Text is required" })
+      expect(res.body.error).toMatch(/"text" is required/i)
     })
 
     it("handles errors", async () => {
@@ -108,7 +108,7 @@ describe("todoController (via HTTP)", () => {
       const res = await request(app).put("/todos/1").send({})
 
       expect(res.status).toBe(400)
-      expect(res.body).toEqual({ error: "Text is required" })
+      expect(res.body.error).toMatch(/"text" is required/i)
     })
 
     it("returns 404 if todo not found", async () => {

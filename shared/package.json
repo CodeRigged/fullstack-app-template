@@ -7,7 +7,8 @@
   },
   "exports": {
     ".": "./build/index.js",
-    "./types": "./build/types/index.js"
+    "./types": "./build/types/index.js",
+    "./validation": "./build/validation/index.js"
   },
   "files": [
     "build"
@@ -29,5 +30,8 @@
   },
   "type": "module",
   "types": "build/index.d.ts",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "dependencies": {
+    "joi": "18.0.2"
+  }
 }

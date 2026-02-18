@@ -13,8 +13,7 @@ const TodoList = () => {
 
   useEffect(() => {
     fetchTodos().catch(setError)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [fetchTodos, setError])
 
   return (
     <Box maxWidth={480} mx="auto" mt={4}>

@@ -5,6 +5,7 @@ import SaveIcon from "@mui/icons-material/Save"
 import { Button, Card, CardActions, CardContent, TextField, Typography } from "@mui/material"
 import { useState } from "react"
 import { Todo } from "shared/types"
+import { validateTodo } from "shared/validation"
 
 import { useErrorStore } from "~/stores/state-handlers"
 import { useTodoStore } from "~/stores/todo-store"
@@ -20,9 +21,15 @@ const TodoListItem = ({ todo }: TodoListItemProps) => {
   const { setError } = useErrorStore()
 
   const handleSaveEdit = async () => {
-    if (!editText.trim()) return
-    await updateTodo(todo._id, { text: editText }).catch(setError)
-    setEditMode(false)
+    // Validate before sending to API
+    const { error, value } = validateTodo({ text: editText.trim() })
+    if (error) {
+      setError(error)
+      return
+    } else if (value.text) {
+      await updateTodo(todo._id, { text: value.text }).catch(setError)
+      setEditMode(false)
+    }
   }
 
   const handleCancelEdit = () => {

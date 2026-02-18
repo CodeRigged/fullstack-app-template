@@ -1,5 +1,6 @@
 import logger from "@logger"
 import { Request, Response } from "express"
+import { validateTodo } from "shared/validation"
 
 import * as todoService from "~/services/todoService"
 
@@ -22,13 +23,15 @@ export const getTodos = async (_req: Request, res: Response) => {
  * Controller to handle creating a new todo from request body.
  * Returns the created todo or an error message.
  * @route POST /todos
- */
-export const createTodo = async (req: Request, res: Response) => {
+ */ export const createTodo = async (req: Request, res: Response) => {
   try {
-    const { text } = req.body
-    if (!text) return res.status(400).json({ error: "Text is required" })
-    const todo = await todoService.createTodo(text)
-    res.status(201).json({ todo })
+    const { error, value } = validateTodo(req.body)
+    if (error) {
+      return res.status(400).json({ error: error.details[0].message })
+    } else if (value.text) {
+      const todo = await todoService.createTodo(value.text)
+      res.status(201).json({ todo })
+    }
   } catch (err) {
     logger.error({ err }, "Error creating todo")
     res.status(500).json({ error: "Failed to create todo" })
@@ -43,13 +46,16 @@ export const createTodo = async (req: Request, res: Response) => {
 export const updateTodo = async (req: Request, res: Response) => {
   try {
     const { id } = req.params
-    const { text } = req.body
-    if (!text) return res.status(400).json({ error: "Text is required" })
-    const updatedTodo = await todoService.updateTodo(id, text)
-    if (!updatedTodo) {
-      return res.status(404).json({ error: "Todo not found" })
+    const { error, value } = validateTodo(req.body)
+    if (error) {
+      return res.status(400).json({ error: error.details[0].message })
+    } else if (value.text) {
+      const updatedTodo = await todoService.updateTodo(id, value.text)
+      if (!updatedTodo) {
+        return res.status(404).json({ error: "Todo not found" })
+      }
+      res.json({ message: "Todo updated", todo: updatedTodo })
     }
-    res.json({ message: "Todo updated", todo: updatedTodo })
   } catch (err) {
     logger.error({ err }, "Error updating todo")
     res.status(500).json({ error: "Failed to update todo" })
