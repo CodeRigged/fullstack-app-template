@@ -1,6 +1,7 @@
 import { ButtonProps, Divider, IconButtonProps } from "@mui/material"
 import Menu from "@mui/material/Menu"
 import { ComponentType, Fragment, ReactElement, useState } from "react"
+import { Nullable } from "shared/types"
 
 import { MenuListItem } from "./MenuItems"
 
@@ -16,7 +17,7 @@ type AppMenu = {
  * @param {ReactElement<typeof MenuListItem | typeof Divider>[]} items - The list of menu items to display.
  */
 const AppMenu = ({ Activator, items }: AppMenu) => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const [anchorEl, setAnchorEl] = useState<Nullable<HTMLElement>>(null)
   const isOpen = Boolean(anchorEl)
   const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
