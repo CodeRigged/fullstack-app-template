@@ -32,6 +32,9 @@ jobs:
       - name: Lint all packages
         run: pnpm lint
 
+      - name: Generate Swagger docs
+        run: pnpm --filter ./backend swagger
+
       - name: Build all packages
         run: pnpm build
 

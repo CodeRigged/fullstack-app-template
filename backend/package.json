@@ -41,14 +41,15 @@
   "scripts": {
     "build": "tsup",
     "clean": "rm -rf dist tsconfig.tsbuildinfo",
-    "predev": "pnpm swagger",
     "dev": "tsx --watch src/server.ts",
     "lint": "eslint . --ext ts --report-unused-disable-directives --max-warnings 0",
     "lint:autofix": "eslint . --ext ts --fix --report-unused-disable-directives --max-warnings 0",
-    "prestart": "pnpm swagger && pnpm build",
+    "prebuild": "pnpm swagger",
+    "predev": "pnpm swagger",
+    "prestart": "pnpm swagger",
     "start": "node dist/server.js",
-    "test": "vitest",
-    "swagger": "tsx swagger.ts"
+    "swagger": "tsx swagger.ts",
+    "test": "vitest"
   },
   "type": "module",
   "version": "1.0.0"
